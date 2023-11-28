@@ -93,6 +93,10 @@ public class SpringBatchConfig {
                 .reader(reader())
                 .processor(processor())
                 .writer(customerAsyncWritter)
+                .faultTolerant()
+                .skipLimit(100)
+                .skip(Exception.class)
+                .noSkip(IllegalStateException.class)
                 .build();
     }
 
